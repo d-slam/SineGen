@@ -37,7 +37,7 @@ public:
 		freqSlider->setSkewFactorFromMidPoint(500.0f);
 		freqSlider->setTextBoxStyle(juce::Slider::TextEntryBoxPosition::TextBoxBelow, false, 100, 20);
 		freqSlider->setTextValueSuffix(" Hz");
-		freqSlider->onValueChange = [this] {	audioState.freq.store(static_cast<float>(freqSlider->getValue()));	};
+		freqSlider->onValueChange = [this] {	audioState.freq.store(static_cast<double>(freqSlider->getValue()));	};
 
 
 	}

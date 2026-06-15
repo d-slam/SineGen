@@ -26,21 +26,17 @@ public:
     void resized() override;
 
 private:
-    //==============================================================================
-    // Your private member variables go here...
 
     AudioState audioState;
 
     SliderComponent sliderComponent{ audioState };
 
-    double currentSampleRate = 0.0, currentAngle = 0.0, angleDelta = 0.0; // [1]
+    double currentSampleRate = 0.0, currentAngle = 0.0, angleDelta = 0.0, currentFrequency = 500.0;
 
     void updateAngleDelta()
     {
-        auto cyclesPerSample = sliderComponent.freqSlider->getValue() / currentSampleRate; 
-        //auto cyclesPerSample = static_cast<double>(audioState.freq.load()) / currentSampleRate; 
-
-        angleDelta = cyclesPerSample * 2.0 * juce::MathConstants<double>::pi; // [3]
+        auto cyclesPerSample = static_cast<double>(audioState.freq.load()) / currentSampleRate; 
+        angleDelta = cyclesPerSample * 2.0 * juce::MathConstants<double>::pi;
     }
 
     JUCE_DECLARE_NON_COPYABLE_WITH_LEAK_DETECTOR (MainComponent)
