@@ -25,9 +25,7 @@ public:
 		levelSlider->setBounds(0, 0, 100, 500);
 		levelSlider->setValue(0.1f);
 		levelSlider->setTextBoxStyle(juce::Slider::TextEntryBoxPosition::TextBoxBelow, false, 100, 20);
-		//levelSlider->onValueChange = [this] {	audioState.level.store(static_cast<float>(levelSlider->getValue()));	};
-
-		levelSlider->onValueChange = [this] { audioState.level.store((float)levelSlider->getValue()); };
+		levelSlider->onValueChange = [this] {	audioState.level.store(static_cast<float>(levelSlider->getValue()));	};
 
 
 		freqSlider.reset(new juce::Slider("freq"));
@@ -36,6 +34,7 @@ public:
 		freqSlider->setRange(20.0f, 20000.0f);
 		freqSlider->setBounds(100, 0, 100, 500);
 		freqSlider->setValue(500.0f);
+		freqSlider->setSkewFactorFromMidPoint(500.0f);
 		freqSlider->setTextBoxStyle(juce::Slider::TextEntryBoxPosition::TextBoxBelow, false, 100, 20);
 		freqSlider->setTextValueSuffix(" Hz");
 		freqSlider->onValueChange = [this] {	audioState.freq.store(static_cast<float>(freqSlider->getValue()));	};
@@ -45,6 +44,7 @@ public:
 	~SliderComponent()
 	{
 		levelSlider = nullptr;
+		freqSlider = nullptr;
 	}
 
 	void resize() {}

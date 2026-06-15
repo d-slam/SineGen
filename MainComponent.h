@@ -33,6 +33,15 @@ private:
 
     SliderComponent sliderComponent{ audioState };
 
+    double currentSampleRate = 0.0, currentAngle = 0.0, angleDelta = 0.0; // [1]
+
+    void updateAngleDelta()
+    {
+        auto cyclesPerSample = sliderComponent.freqSlider->getValue() / currentSampleRate; 
+        //auto cyclesPerSample = static_cast<double>(audioState.freq.load()) / currentSampleRate; 
+
+        angleDelta = cyclesPerSample * 2.0 * juce::MathConstants<double>::pi; // [3]
+    }
 
     JUCE_DECLARE_NON_COPYABLE_WITH_LEAK_DETECTOR (MainComponent)
 };
