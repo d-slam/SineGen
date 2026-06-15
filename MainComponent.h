@@ -26,7 +26,6 @@ public:
     void resized() override;
 
 private:
-
     AudioState audioState;
 
     SliderComponent sliderComponent{ audioState };
